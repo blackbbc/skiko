@@ -1,5 +1,11 @@
 package org.jetbrains.skia
 
+// region Tencent Code
+import kotlin.experimental.ExperimentalObjCRefinement
+
+@OptIn(ExperimentalObjCRefinement::class)
+@HiddenFromObjC
+// endregion
 enum class BlendMode {
     /** Replaces destination with zero: fully transparent.  */
     CLEAR,

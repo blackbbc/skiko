@@ -19,7 +19,10 @@ expect abstract class Native(ptr: NativePointer) {
 
 internal expect fun reachabilityBarrier(obj: Any?)
 
-internal fun getPtr(n: Native?): NativePointer = n?._ptr ?: Native.NullPointer
+// region Tencent Code Modify
+/* internal fun getPtr(n: Native?): NativePointer = n?._ptr ?: Native.NullPointer */
+fun getPtr(n: Native?): NativePointer = n?._ptr ?: Native.NullPointer
+// endregion
 
 internal expect class InteropScope() {
     fun toInterop(string: String?): InteropPointer

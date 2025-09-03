@@ -477,12 +477,6 @@ class SkikoUIView : UIView, UIKeyInputProtocol, UITextInputProtocol {
         return UITextInputStringTokenizer()
     }
 
-    override fun positionWithinRange(range: UITextRange, atCharacterOffset: NSInteger): UITextPosition? =
-        TODO("positionWithinRange range: $range, atCharacterOffset: $atCharacterOffset")
-
-    override fun positionWithinRange(range: UITextRange, farthestInDirection: UITextLayoutDirection): UITextPosition? =
-        TODO("positionWithinRange, farthestInDirection: ${farthestInDirection.directionToStr()}")
-
     override fun characterRangeByExtendingPosition(
         position: UITextPosition,
         inDirection: UITextLayoutDirection
@@ -589,6 +583,13 @@ class SkikoUIView : UIView, UIKeyInputProtocol, UITextInputProtocol {
      */
     fun selectionDidChange() {
         _inputDelegate?.selectionDidChange(this)
+    }
+
+    override fun positionWithinRange(
+        range: UITextRange,
+        farthestInDirection: UITextLayoutDirection
+    ): UITextPosition? {
+        TODO("Not yet implemented")
     }
 }
 

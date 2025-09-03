@@ -1,10 +1,15 @@
+@file:Suppress("OPTIONAL_DECLARATION_USAGE_IN_NON_COMMON_SOURCE")
 package org.jetbrains.skia
 
 import org.jetbrains.skia.impl.*
 import org.jetbrains.skia.impl.Library.Companion.staticLoad
 import kotlin.math.min
-
+// region Tencent Code Modify
+/*
 class Bitmap internal constructor(ptr: NativePointer) : Managed(ptr, _FinalizerHolder.PTR), IHasImageInfo {
+*/
+class Bitmap constructor(ptr: NativePointer) : Managed(ptr, _FinalizerHolder.PTR), IHasImageInfo {
+// endregion
     companion object {
         fun makeFromImage(image: Image): Bitmap {
             val bitmap = Bitmap()

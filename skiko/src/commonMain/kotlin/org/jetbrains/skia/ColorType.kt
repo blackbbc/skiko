@@ -1,9 +1,18 @@
+@file:Suppress("OPTIONAL_DECLARATION_USAGE_IN_NON_COMMON_SOURCE")
 package org.jetbrains.skia
+
+// region Tencent Code
+import kotlin.experimental.ExperimentalObjCRefinement
+// endregion
 
 /**
  * Describes how pixel bits encode color. A pixel may be an alpha mask, a
  * grayscale, RGB, or ARGB.
  */
+// region Tencent Code
+@OptIn(ExperimentalObjCRefinement::class)
+@HiddenFromObjC
+// endregion
 enum class ColorType {
     /**
      * Uninitialized

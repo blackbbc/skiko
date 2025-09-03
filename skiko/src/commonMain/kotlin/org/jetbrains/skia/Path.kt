@@ -1,7 +1,11 @@
+@file:Suppress("OPTIONAL_DECLARATION_USAGE_IN_NON_COMMON_SOURCE")
 package org.jetbrains.skia
 
 import org.jetbrains.skia.impl.*
 import org.jetbrains.skia.impl.Library.Companion.staticLoad
+// region Tencent Code
+import kotlin.experimental.ExperimentalObjCName
+// endregion
 import kotlin.math.min
 
 /**
@@ -1710,6 +1714,10 @@ class Path internal constructor(ptr: NativePointer) : Managed(ptr, _FinalizerHol
      *
      * @see [https://fiddle.skia.org/c/@Path_addPoly](https://fiddle.skia.org/c/@Path_addPoly)
      */
+    // region Tencent Code
+    @OptIn(ExperimentalObjCName::class)
+    @ObjCName("addPolySkia")
+    // endregion
     fun addPoly(pts: FloatArray, close: Boolean): Path {
         require(pts.size % 2 == 0) { "Expected even amount of pts, got " + pts.size }
         Stats.onNativeCall()

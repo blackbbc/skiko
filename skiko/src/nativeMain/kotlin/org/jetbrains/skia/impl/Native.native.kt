@@ -42,8 +42,16 @@ actual abstract class Native actual constructor(ptr: NativePointer) {
     }
 
     init {
+        // region Tencent Code Modify
+        /*
         if (ptr == NativePtr.NULL) throw RuntimeException("Can't wrap nullptr")
         _ptr = ptr
+         */
+
+        // TODO Native nullptr check
+//        if (ptr == NativePtr.NULL) throw RuntimeException("Can't wrap nullptr")
+        _ptr = ptr
+        // endregion
     }
 }
 

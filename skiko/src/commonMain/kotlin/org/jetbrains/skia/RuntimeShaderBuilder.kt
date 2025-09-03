@@ -1,3 +1,4 @@
+@file:Suppress("OPTIONAL_DECLARATION_USAGE_IN_NON_COMMON_SOURCE")
 package org.jetbrains.skia
 
 import org.jetbrains.skia.impl.*
@@ -7,6 +8,9 @@ import org.jetbrains.skia.impl.NativePointer
 import org.jetbrains.skia.impl.Stats
 import org.jetbrains.skia.impl.interopScope
 import org.jetbrains.skia.impl.reachabilityBarrier
+// region Tencent Code
+import kotlin.experimental.ExperimentalObjCRefinement
+// endregion
 
 class RuntimeShaderBuilder internal constructor(ptr: NativePointer) : Managed(ptr, _FinalizerHolder.PTR) {
     companion object {
@@ -23,28 +27,40 @@ class RuntimeShaderBuilder internal constructor(ptr: NativePointer) : Managed(pt
     private object _FinalizerHolder {
         val PTR = RuntimeShaderBuilder_nGetFinalizer()
     }
-
+    // region Tencent Code
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    // endregion
     fun uniform(name: String, value: Int) {
         Stats.onNativeCall()
         interopScope {
             _nUniformInt(_ptr, toInterop(name), value)
         }
     }
-
+    // region Tencent Code
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    // endregion
     fun uniform(name: String, value1: Int, value2: Int) {
         Stats.onNativeCall()
         interopScope {
             _nUniformInt2(_ptr, toInterop(name), value1, value2)
         }
     }
-
+    // region Tencent Code
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    // endregion
     fun uniform(name: String, value1: Int, value2: Int, value3: Int) {
         Stats.onNativeCall()
         interopScope {
             _nUniformInt3(_ptr, toInterop(name), value1, value2, value3)
         }
     }
-
+    // region Tencent Code
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    // endregion
     fun uniform(name: String, value1: Int, value2: Int, value3: Int, value4: Int) {
         Stats.onNativeCall()
         interopScope {
@@ -79,21 +95,30 @@ class RuntimeShaderBuilder internal constructor(ptr: NativePointer) : Managed(pt
             _nUniformFloat4(_ptr, toInterop(name), value1, value2, value3, value4)
         }
     }
-
+    // region Tencent Code
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    // endregion
     fun uniform(name: String, value: Matrix22) {
         Stats.onNativeCall()
         interopScope {
             _nUniformFloatMatrix22(_ptr, toInterop(name), toInterop(value.mat))
         }
     }
-
+    // region Tencent Code
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    // endregion
     fun uniform(name: String, value: Matrix33) {
         Stats.onNativeCall()
         interopScope {
             _nUniformFloatMatrix33(_ptr, toInterop(name), toInterop(value.mat))
         }
     }
-
+    // region Tencent Code
+    @OptIn(ExperimentalObjCRefinement::class)
+    @HiddenFromObjC
+    // endregion
     fun uniform(name: String, value: Matrix44) {
         Stats.onNativeCall()
         interopScope {

@@ -1,10 +1,11 @@
 plugins {
-    kotlin("multiplatform")
+    id("org.jetbrains.kotlin.multiplatform") version "1.9.23-dev-1"
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
+
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 

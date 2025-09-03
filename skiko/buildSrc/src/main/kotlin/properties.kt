@@ -162,15 +162,17 @@ class SkikoProperties(private val myProject: Project) {
                 ?: System.getProperty("skia.dir")
                 ?: myProject.findProperty("skia.dir")?.toString()
             )?.let { File(it) }?.takeIf { it.isDirectory }
+    val publishUrl: String
+        get() = System.getProperty("publishUrl")
+            ?: (myProject.findProperty("publishUrl") as? String) ?: ""
 
-    val composeRepoUrl: String
-        get() = System.getenv("COMPOSE_REPO_URL") ?: "https://maven.pkg.jetbrains.space/public/p/compose/dev"
+    val publishUserName: String?
+        get() = System.getProperty("publishUserName")
+            ?: (myProject.findProperty("publishUserName") as? String)
 
-    val composeRepoUserName: String
-        get() = System.getenv("COMPOSE_REPO_USERNAME") ?: ""
-
-    val composeRepoKey: String
-        get() = System.getenv("COMPOSE_REPO_KEY") ?: ""
+    val publishKey: String?
+        get() = System.getProperty("publishKey")
+            ?: (myProject.findProperty("publishKey") as? String)
 
     val signHost: String?
         get() = System.getenv("JB_SIGN_HOST")

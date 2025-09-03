@@ -6,6 +6,9 @@ enum class OS(val id: String) {
     Windows("windows"),
     MacOS("macos"),
     Ios("ios"),
+    // region Tencent Code Modify
+    Ohos("Ohos"),
+    // endregion
 
     @Deprecated("JS is invalid host OS name. Consider using enum KotlinBackend to detect JS.")
     JS("js"),

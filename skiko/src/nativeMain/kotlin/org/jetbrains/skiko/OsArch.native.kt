@@ -9,6 +9,9 @@ actual val hostOs: OS by lazy {
         OsFamily.LINUX -> OS.Linux
         OsFamily.WINDOWS -> OS.Windows
         OsFamily.IOS -> OS.Ios
+        // region Tencent Code Modify
+        OsFamily.OHOS -> OS.Ohos
+        // endregion
         else -> throw Error("Unsupported OS ${Platform.osFamily}")
     }
 }

@@ -1,4 +1,4 @@
-@file:Suppress("NESTED_EXTERNAL_DECLARATION")
+@file:Suppress("NESTED_EXTERNAL_DECLARATION","OPTIONAL_DECLARATION_USAGE_IN_NON_COMMON_SOURCE")
 package org.jetbrains.skia.skottie
 
 import org.jetbrains.skia.impl.Library.Companion.staticLoad

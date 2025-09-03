@@ -66,10 +66,10 @@ internal val Project.isInIdea: Boolean
     }
 
 val Project.supportAndroid: Boolean
-    get() = findProperty("skiko.android.enabled") == "true" // || isInIdea
+    get() = false // findProperty("skiko.android.enabled") == "true" // || isInIdea
 
 val Project.supportAwt: Boolean
-    get() = findProperty("skiko.awt.enabled") == "true" || isInIdea
+    get() = false // findProperty("skiko.awt.enabled") == "true" || isInIdea
 
 val Project.supportAllNative: Boolean
     get() = findProperty("skiko.native.enabled") == "true" || isInIdea
@@ -90,16 +90,16 @@ val Project.supportAnyNativeIos: Boolean
     get() = supportAllNativeIos || supportNativeIosArm64 || supportNativeIosSimulatorArm64 || supportNativeIosX64
 
 val Project.supportNativeMac: Boolean
-    get() = supportAllNative || findProperty("skiko.native.mac.enabled") == "true" || isInIdea
+    get() = false // supportAllNative || findProperty("skiko.native.mac.enabled") == "true" || isInIdea
 
 val Project.supportNativeLinux: Boolean
-    get() = supportAllNative || findProperty("skiko.native.linux.enabled") == "true" || isInIdea
+    get() = false // supportAllNative || findProperty("skiko.native.linux.enabled") == "true" || isInIdea
 
 val Project.supportAnyNative: Boolean
     get() = supportAllNative || supportAnyNativeIos || supportNativeMac || supportNativeLinux
 
 val Project.supportWasm: Boolean
-    get() = findProperty("skiko.wasm.enabled") == "true" || isInIdea
+    get() = false // findProperty("skiko.wasm.enabled") == "true" || isInIdea
 
 val Project.supportJs: Boolean
-    get() = findProperty("skiko.js.enabled") == "true" || supportWasm || isInIdea
+    get() = false // findProperty("skiko.js.enabled") == "true" || supportWasm || isInIdea

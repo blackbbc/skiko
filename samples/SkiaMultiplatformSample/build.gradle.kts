@@ -14,7 +14,7 @@ buildscript {
 }
 
 plugins {
-    kotlin("multiplatform")
+    id("org.jetbrains.kotlin.multiplatform") version "1.9.23-dev-1"
     id("org.jetbrains.gradle.apple.applePlugin") version "222.3345.143-0.16"
 }
 

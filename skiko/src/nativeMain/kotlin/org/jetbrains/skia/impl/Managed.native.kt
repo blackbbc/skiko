@@ -25,7 +25,8 @@ actual abstract class Managed actual constructor(
         ptr: NativePointer, finalizer: NativePointer, managed: Boolean) : Native(ptr) {
 
     private val thunk: FinalizationThunk? = if (managed) {
-        require(ptr != NullPointer) { "Managed ptr is nullptr" }
+        // TODO: NativeDrawing会返回大量空指针，后面补充完毕后再放开
+//        require(ptr != NullPointer) { "Managed ptr is nullptr" }
         require(finalizer != NullPointer) { "Managed finalizer is nullptr" }
         val className = this::class.simpleName ?: "<kotlin>"
         Stats.onAllocated(className)

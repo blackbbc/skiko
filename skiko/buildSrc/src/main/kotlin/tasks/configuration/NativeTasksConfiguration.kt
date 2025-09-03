@@ -246,7 +246,7 @@ fun SkikoProjectContext.configureNativeTarget(os: OS, arch: Arch, target: Kotlin
                 argumentProviders.add { listOf("-crs", staticLib) }
             }
             OS.MacOS, OS.IOS -> {
-                executable = "libtool"
+                executable = "/Library/Developer/CommandLineTools/usr/bin/libtool"
                 argumentProviders.add { listOf("-static", "-o", staticLib) }
             }
             else -> error("Unexpected OS for native bridges linking: $os")

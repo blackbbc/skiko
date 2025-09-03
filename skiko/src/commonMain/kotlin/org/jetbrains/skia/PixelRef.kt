@@ -1,3 +1,4 @@
+@file:Suppress("OPTIONAL_DECLARATION_USAGE_IN_NON_COMMON_SOURCE")
 package org.jetbrains.skia
 
 import org.jetbrains.skia.impl.Library.Companion.staticLoad
@@ -6,7 +7,12 @@ import org.jetbrains.skia.impl.Stats
 import org.jetbrains.skia.impl.reachabilityBarrier
 import org.jetbrains.skia.impl.NativePointer
 
+// region Tencent Code Modify
+/*
 class PixelRef internal constructor(ptr: NativePointer) : RefCnt(ptr) {
+*/
+class PixelRef constructor(ptr: NativePointer) : RefCnt(ptr) {
+// endregion
     companion object {
         init {
             staticLoad()

@@ -1,10 +1,13 @@
 val kspVersion: String by project
 
 plugins {
-    kotlin("multiplatform")
+    id("org.jetbrains.kotlin.multiplatform")
 }
 
 repositories {
+    maven {
+        url = uri("https://mirrors.tencent.com/nexus/repository/maven-public")
+    }
     mavenCentral()
 }
 

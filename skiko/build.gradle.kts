@@ -5,18 +5,17 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import tasks.configuration.*
 
 plugins {
-    kotlin("multiplatform")
+    id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.dokka") version "1.9.10"
     `maven-publish`
     signing
     id("org.gradle.crypto.checksum") version "1.4.0"
 }
-
 apply<WasmImportsGeneratorCompilerPluginSupportPlugin>()
 apply<WasmImportsGeneratorForTestCompilerPluginSupportPlugin>()
 
-val coroutinesVersion = "1.8.0"
-val atomicfuVersion = "0.23.2"
+val coroutinesVersion = "1.8.0-KBA-001"
+val atomicfuVersion = "0.23.2-KBA-001"
 
 val skiko = SkikoProperties(rootProject)
 val buildType = skiko.buildType
@@ -42,6 +41,10 @@ allprojects {
 }
 
 repositories {
+    mavenLocal()
+    maven {
+        url = uri("https://mirrors.tencent.com/nexus/repository/maven-public")
+    }
     mavenCentral()
 }
 
@@ -128,9 +131,6 @@ kotlin {
         skikoProjectContext.configureNativeTarget(OS.MacOS, Arch.X64, macosX64())
         skikoProjectContext.configureNativeTarget(OS.MacOS, Arch.Arm64, macosArm64())
     }
-    if (supportNativeLinux) {
-        skikoProjectContext.configureNativeTarget(OS.Linux, Arch.X64, linuxX64())
-    }
     if (supportNativeIosArm64) {
         skikoProjectContext.configureNativeTarget(OS.IOS, Arch.Arm64, iosArm64())
     }
@@ -139,6 +139,9 @@ kotlin {
     }
     if (supportNativeIosX64) {
         skikoProjectContext.configureNativeTarget(OS.IOS, Arch.X64, iosX64())
+    }
+    if (supportAllNative) {
+        ohosArm64()
     }
 
     sourceSets {
@@ -258,21 +261,12 @@ kotlin {
                 val nativeTest by creating {
                     dependsOn(nativeJsTest)
                 }
-                if (supportNativeLinux) {
-                    val linuxMain by creating {
-                        dependsOn(nativeMain)
-                    }
-                    val linuxTest by creating {
-                        dependsOn(nativeTest)
-                    }
-                    val linuxX64Main by getting {
-                        dependsOn(linuxMain)
-                    }
-                    val linuxX64Test by getting {
-                        dependsOn(linuxTest)
-                    }
+
+                val ohosArm64Main by getting {
+                    dependsOn(nativeMain)
                 }
-                if (supportAnyNativeIos || supportNativeMac) {
+
+                if (supportNativeMac || supportAnyNativeIos) {
                     val darwinMain by creating {
                         dependsOn(nativeMain)
                     }
@@ -332,6 +326,7 @@ kotlin {
                         }
                     }
                 }
+
             }
         }
     }
@@ -410,25 +405,14 @@ val emptyJavadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
+
 publishing {
     repositories {
-        configureEach {
-            val repoName = name
-            tasks.register("publishTo${repoName}") {
-                group = "publishing"
-                dependsOn(tasks.named("publishAllPublicationsTo${repoName}Repository"))
-            }
-        }
         maven {
-            name = "BuildRepo"
-            url = uri("${rootProject.buildDir}/repo")
-        }
-        maven {
-            name = "ComposeRepo"
-            url = uri(skiko.composeRepoUrl)
+            url = uri(skiko.publishUrl)
             credentials {
-                username = skiko.composeRepoUserName
-                password = skiko.composeRepoKey
+                username = skiko.publishUserName
+                password = skiko.publishKey
             }
         }
     }

@@ -1,8 +1,16 @@
 package org.jetbrains.skia
+// region Tencent Code
+import kotlin.experimental.ExperimentalObjCRefinement
+// endregion
 
 /**
  * The logical operations that can be performed when combining two paths.
  */
+
+// region Tencent Code
+@OptIn(ExperimentalObjCRefinement::class)
+@HiddenFromObjC
+// endregion
 enum class PathOp {
     /** subtract the op path from the first path  */
     DIFFERENCE,
